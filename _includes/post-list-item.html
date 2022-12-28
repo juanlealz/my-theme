@@ -1,0 +1,25 @@
+      <li>
+	      {% assign date_format = site.minima.date_format | default: "%Y-%m-%d" %}
+	      <a class="post-link" href="{{ include.item.url | relative_url }}">{{ include.item.title | escape }}</a>
+	      <span class="details">
+        {% assign has-tags = false %}
+        {% if include.item.tags.size > 0 %}
+          {% assign has-tags = include.with-tags %}
+        {% endif %}
+        {% assign has-date = false %}
+        {% if include.item.date %}
+          {% assign has-date = include.with-date %}
+        {% endif %}
+	      {% if has-tags or has-date %}
+	      ({% if has-date %}{{ include.item.date | date: "%Y-%m-%d" }}{% endif %}{% if has-tags and has-date %},&nbsp;{% endif %}{% if has-tags %}{% for tag in include.item.tags %}{% if forloop.first %}{%else%}{% if forloop.last %} y {% else %}, {% endif %}{% endif %}<a href="/{{tag | slugify: "latin"}}/">{{tag}}</a>{%if forloop.last %}{%endif%}{% endfor %}{% endif %})
+	      {% endif %}
+	      </span>
+        {%- if include.with_excerpts -%}
+        <p>
+          {% if include.item.excerpt.size > 50 %}
+          {{ include.item.excerpt | strip_html}}
+          {%endif%}
+        </p>
+        {%- endif -%}
+      </li>
+ 

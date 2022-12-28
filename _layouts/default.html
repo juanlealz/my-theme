@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
+  </head>
+
+  <body>
+
+	  <header>
+		  <div class="container">
+        <h1><a id="a-title" href="{{ '/' | relative_url }}" style="white-space: pre">{{ site.title }}</a></h1>
+        <p>{{site.description }}</p>
+		  </div>
+	  </header>
+
+	  <section id="main_content">
+		  <div class="container">
+			  {{ content }}
+		  </div>
+	  </section>
+
+	  <footer>
+		  <div class="container">
+			  <h1>Sobre esta página</h1>
+
+      <div id="footer-meta">
+{% capture full_url %}{{site.url}}{{page.url}}{% endcapture %}
+<img class="printonly" id="qr-code" src='{% qr full_url %}' alt="{{ full_url }}">
+			  <ul>
+				  <!--
+	      {% if page.date %}
+	      <li>Publicado en {{ page.date | date: "%Y-%m-%d" }}{% if page.previous or page.next %} (leer {% if page.previous %}<a href="{{page.previous.url}}">anterior</a>{% if page.next %} o {% endif %}{% endif %}{% if page.next %} <a href="{{page.next.url}}">siguiente</a>{%endif%}){% endif %}.</li>
+	      {% endif %}
+	      <li>
+	      {% for tag in page.tags %}{% if forloop.first %}Lee más sobre: {% endif %}<a href="/tags/{{tag}}">{{tag}}</a>{% if forloop.last == false %}, {% else %}.{% endif %}{% endfor %}
+	      </li>
+				  -->
+				  {% if page.url != "/" %}<li class="screenonly">Ir a la <a href="{{ "/" | relative_url }}">página de inicio</a>.</li>{%endif%}
+				  <li class="screenonly">Datos de <a href="/contactar/">contacto</a>.</li>
+          <li class="printonly">Correo: {{site.email}}</li>
+				  <!--<li>Comparte <a href="{{ "/feed.xml" | relative_url }}">vía Twitter</a>.</li>-->
+				  <li class="screenonly">Suscríbete <a href="{{ "/feed.xml" | relative_url }}">vía RSS</a>.</li>
+				  {% if page.collection=="posts" %}<li>Licencia: <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>.</li>{% endif %}
+          <li class="printonly">Descargar: {{full_url}}</li>
+			  </ul>
+      </div>
+	  </div>
+	  </footer>
+
+  </body>
+</html>

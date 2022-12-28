@@ -1,0 +1,24 @@
+---
+layout: default
+---
+{%if page.title %}
+<div id="post-title">
+<h1>{{ page.title }}</h1>
+</div>
+{%endif%}
+
+<section id="post-content">
+{{content}}
+</section>
+
+<div>
+	<h1>Artículos sobre {{page.tag-name}}</h1>
+	<ul class='post-list'>
+		{% for post in site.posts %}
+		{% if post.tags contains page.tag-name %}
+        {% include post-list-item.html item=post with-date=true with-tags=false %}
+		{% endif %}
+		{% endfor %}
+
+	</ul>
+</div>
