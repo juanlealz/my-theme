@@ -13,7 +13,7 @@ y
 
 <div id="post-title">
 <h1>{{ page.title }}</h1>
-{% if page.date %}<p>Publicado el {{ page.date | date: "%Y-%m-%d" }}{% endif %}{% for tag in page.tags %}{% if forloop.first %} en {%else%}{% if forloop.last %} {{and-word}} {% else %}, {% endif %}{% endif %}<a href="/{{tag | slugify: "latin"}}/">{{tag}}</a>{% endfor %}{% if page.date or page.tags %}.</p>{% endif %}
+{% if page.date %}<p>Publicado el {{ page.date | date: "%Y-%m-%d" }}{% if page.updated %} (actualizado el {{page.updated}}){% endif %}{% endif %}{% for tag in page.tags %}{% if forloop.first %} en {%else%}{% if forloop.last %} {{and-word}} {% else %}, {% endif %}{% endif %}<a href="/{{tag | slugify: "latin"}}/">{{tag}}</a>{% endfor %}{% if page.date or page.tags %}.</p>{% endif %}
 </div>
 
 <section id="post-content">
