@@ -85,6 +85,10 @@ footer {
   }
   */
 
+    @media print {
+        break-inside: avoid;
+        }
+
     ul:before {
       content: "---";
     }
